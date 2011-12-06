@@ -21,7 +21,7 @@
 %  Add 'draft' option to mark overfull boxes with black boxes
 %  Add 'showpacs' option to make PACS codes appear
 %  Add 'showkeys' option to make keywords appear
-\documentclass[aps,pra,preprint,groupedaddress]{revtex4-1}
+\documentclass[aps,pra,groupedaddress]{revtex4-1}
 %\documentclass[aps,prl,preprint,superscriptaddress]{revtex4-1}
 %\documentclass[aps,prl,reprint,groupedaddress]{revtex4-1}
 
@@ -30,6 +30,8 @@
 % BibTeX style file (bst file), so only uncomment the line
 % below if necessary.
 %\bibliographystyle{apsrev4-1}
+
+\usepackage{verbatim}
 
 \begin{document}
 
@@ -54,12 +56,12 @@
 % other information
 % \affiliation can be followed by \email, \homepage, \thanks as well.
 
-\author{Raymond Wong}
-\affiliation{Department of Computer Science, California Polytechnic State University, San Luis Obispo, CA 93407, USA}
-\author{Matt Curry}
-\affiliation{Department of Physics, University of New Mexico, Albuquerque, NM 87131, USA}
 \author{Addison Cugini}
 \affiliation{Apple Computer, Cupertino, CA}
+\author{Matt Curry}
+\affiliation{Department of Physics, University of New Mexico, Albuquerque, NM 87131, USA}
+\author{Raymond Wong}
+\affiliation{Department of Computer Science, California Polytechnic State University, San Luis Obispo, CA 93407, USA}
 \author{Austen Greene}
 \affiliation{Department of Physics, California Polytechnic State University, San Luis Obispo, CA
 93407, USA}
@@ -99,13 +101,44 @@ is an important part of quantum information science.  With such simulations, alg
 
 \section{SymPy}
 
+\begin{verbatim}
+from __future__ import division
+from sympy import *
+x, y, z, t = symbols('x y z t')
+k, m, n = symbols('k m n', integer=True)
+f, g, h = symbols('f g h', cls=Function)
+\end{verbatim}
+
+\begin{verbatim}
+((x+y)**2 * (x+1)).expand()
+\end{verbatim}
+
+$ x^{3} + 2 x^{2} y + x^{2} + x y^{2} + 2 x y + y^{2} $
+
+\begin{verbatim}
+solve(Eq(x**3 + 2*x**2 + 4*x + 8, 0), x)
+[-2*I, 2*I, -2]
+\end{verbatim}
+
+\begin{verbatim}
+limit((sin(x)-x)/x**3, x, 0)
+\end{verbatim}
+
+$ - \frac{1}{6} $
+
+\begin{verbatim}
+(1/cos(x)).series(x, 0, 6)
+\end{verbatim}
+
+$ 1 + \frac{1}{2} x^{2} + \frac{5}{24} x^{4} + \mathcal{O}\left(x^{6}\right) $
+
 \section{Symbolic Dirac notation}
 
 \section{Qubits}
 
 \section{Gates}
 
-\section{Density operator}
+\section{Density matrix}
 
 \section{Algorithms and examples}
 
