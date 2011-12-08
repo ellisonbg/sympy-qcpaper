@@ -1,0 +1,39 @@
+<h1>Dense Coding </h1>
+
+\begin{verbatim}
+%load_ext sympy_printing
+\end{verbatim}
+
+\begin{verbatim}
+from sympy import sqrt, symbols, Rational
+from sympy import expand, Eq, Symbol, simplify, exp, sin
+from sympy.physics.quantum import *
+from sympy.physics.quantum.qubit import *
+from sympy.physics.quantum.gate import *
+from sympy.physics.quantum.grover import *
+from sympy.physics.quantum.qft import QFT, IQFT, Fourier
+from sympy.physics.quantum.circuitplot import circuit_plot
+\end{verbatim}
+
+\begin{verbatim}
+psi = Qubit('00')/sqrt(2) + Qubit('11')/sqrt(2); psi
+\end{verbatim}
+
+\begin{verbatim}
+circuits = [H(1)*CNOT(1,0), H(1)*CNOT(1,0)*X(1), H(1)*CNOT(1,0)*Z(1), H(1)*CNOT(1,0)*Z(1)*X(1)]
+\end{verbatim}
+
+\begin{verbatim}
+for circuit in circuits:
+    circuit_plot(circuit, nqubits=2)
+    display(Eq(circuit*psi,qapply(circuit*psi)))
+\end{verbatim}
+
+\begin{verbatim}
+%notebook save dense_coding.ipynb
+\end{verbatim}
+
+\begin{verbatim}
+%notebook load teleportation.ipynb
+\end{verbatim}
+

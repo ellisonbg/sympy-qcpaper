@@ -1,0 +1,78 @@
+SymPy
+
+\begin{verbatim}
+%load_ext sympyprinting
+\end{verbatim}
+
+\begin{verbatim}
+from __future__ import division
+from sympy import *
+\end{verbatim}
+
+We now show a few examples of SymPy's capabilities to show its usefulness as a
+general computer algebra system. In SymPy symbols have to be created
+explicitely. Here we create the symbols ($x$, $y$, $z$):
+
+\begin{verbatim}
+x, y, z = symbols("x y z")
+\end{verbatim}
+
+Once these symbols have been created, symbolic expressions can be created and
+manipulated. Here is an example involving a rational number, $\pi$, $i$, $e$ and
+basic arithmetic operations:
+
+\begin{verbatim}
+Rational(3,2)*pi+exp(I*x) / (x**2+y)
+\end{verbatim}
+$$\frac{3}{2} \pi + \frac{e^{\mathbf{\imath} x}}{x^{2} + y}$$
+
+Expressions can be evaluated numerically using SymPy's arbitrary precision
+arithmetic algorithms:
+
+\begin{verbatim}
+exp(pi*sqrt(163)).evalf(35)
+\end{verbatim}
+$$262537412640768743.99999999999925007$$
+
+Here is an example of expanding and refactoring a polynomial:
+
+\begin{verbatim}
+((x+y)**2*(x+1)).expand()
+\end{verbatim}
+$$x^{3} + 2 x^{2} y + x^{2} + x y^{2} + 2 x y + y^{2}$$
+
+\begin{verbatim}
+factor(_)
+\end{verbatim}
+$$\left(x + 1\right) \left(x + y\right)^{2}$$
+
+Derivatives can be taken of expressions:
+
+\begin{verbatim}
+diff(cos(x**2)**2/(1+x), x)
+\end{verbatim}
+$$- 4 \frac{x \operatorname{sin}\left(x^{2}\right) \operatorname{cos}\left(x^{2}\right)}{x + 1} - \frac{\operatorname{cos}^{2}\left(x^{2}\right)}{\left(x + 1\right)^{2}}$$
+
+We emphasize that these examples are merely representative of its vast
+capabilities. We encourage the reader to consult the SymPy documentation for a
+more complete set of examples.
+
+Python is an object oriented language and SymPy leverages that to build reusable
+objects for symbolic mathematics. Internally, SymPy creates instances of these
+objects and stores them in an expression tree. In this example, we construct a
+simple expression and then display its expression tree and SymPy objects using
+the \verb:srepr: function:
+
+\begin{verbatim}
+e = x + 2*y
+srepr(e)
+\end{verbatim}
+
+\begin{verbatim}
+Add(Symbol(&apos;x&apos;), Mul(Integer(2), Symbol(&apos;y&apos;)))
+\end{verbatim}
+
+This combination of object orientation and expression trees makes SymPy easily
+extensible; once new objects are created they can immediately be used in
+arbitrary expressions.
+

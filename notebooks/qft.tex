@@ -1,0 +1,70 @@
+<h1>Quantum Fourier Transform</h1>
+
+\begin{verbatim}
+%load_ext sympyprinting
+\end{verbatim}
+
+\begin{verbatim}
+from sympy import sqrt, symbols, Rational
+from sympy import expand, Eq, Symbol, simplify, exp, sin
+from sympy.physics.quantum import *
+from sympy.physics.quantum.qubit import *
+from sympy.physics.quantum.gate import *
+from sympy.physics.quantum.grover import *
+from sympy.physics.quantum.qft import QFT, IQFT, Fourier
+from sympy.physics.quantum.circuitplot import circuit_plot
+\end{verbatim}
+
+QFT is useful for a quantum algorithm for factoring numbers which is
+exponentially faster than what is thought to be possible on a classical
+machine.<br> The transform does a DFT on the state of a quantum system<br> There
+is a simple decomposition of the QFT in terms of a few elementary gates.
+
+<h2>QFT Gate and Circuit</h2>
+
+Build a 3 qubit QFT and decompose it into primitive gates.
+
+\begin{verbatim}
+fourier = QFT(0,3).decompose(); fourier
+\end{verbatim}
+
+\begin{verbatim}
+circuit_plot(fourier, nqubits=3)
+\end{verbatim}
+
+The QFT circuit can be represented in various symbolic forms.
+
+\begin{verbatim}
+m = represent(fourier, nqubits=3)
+\end{verbatim}
+
+\begin{verbatim}
+m
+\end{verbatim}
+
+\begin{verbatim}
+represent(Fourier(0,3), nqubits=3)*4/sqrt(2)
+\end{verbatim}
+
+<h2>QFT in Action</h2>
+
+Build a 3 qubit state to take the QFT of.
+
+\begin{verbatim}
+state = (Qubit('000') + Qubit('010') + Qubit('100') + Qubit('110'))/sqrt(4); state
+\end{verbatim}
+
+Perform the QFT.
+
+\begin{verbatim}
+qapply(fourier*state)
+\end{verbatim}
+
+\begin{verbatim}
+%notebook save qft.ipynb
+\end{verbatim}
+
+\begin{verbatim}
+%notebook load density_matrix.ipynb
+\end{verbatim}
+
